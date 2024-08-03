@@ -1,0 +1,52 @@
+﻿@model MotoXpress3.Models.RentalRecord
+@using Microsoft.AspNetCore.Identity
+@using MotoXpress3.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Rent Bike";
+}
+
+<h1>Rent a bike</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RentBike">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RentalId" class="control-label">Rental Id</label>
+                <input asp-for="RentalId" class="form-control" />
+                <span asp-validation-for="RentalId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BikeId" class="control-label">Bike</label>
+                <select asp-for="BikeId" class="form-control" asp-items="ViewBag.BikeName"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label">Email Id</label>
+                <input asp-for="UserId" class="form-control" value="@User.Identity?.Name" readonly></input>
+            </div> 
+            <div class="form-group">
+                <label asp-for="RentalDate" class="control-label">Rental Start Date</label>
+                <input asp-for="RentalDate" class="form-control" />
+                <span asp-validation-for="RentalDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReturnDate" class="control-label">Rental End Date</label>
+                <input asp-for="ReturnDate" class="form-control" />
+                <span asp-validation-for="ReturnDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

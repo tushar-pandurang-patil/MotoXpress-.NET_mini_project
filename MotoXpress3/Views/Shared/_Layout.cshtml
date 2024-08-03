@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MotoXpress - @ViewData["Title"] </title>
+    <link rel="apple-touch-icon" sizes="180x180" href="~/image/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/image/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/image/favicon-16x16.png">
+    <link rel="manifest" href="~/image/site.webmanifest">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom border-body">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Moto<span style="color:red;">X</span><span>press</span> </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1" >
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Bikes" asp-action="Index">Bikes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (!User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="RentalRecords" asp-action="RentBike">Rent a Bike</a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="RentalRecords" asp-action="Index">Bookings</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="AspNetUsers" asp-action="Index">Users List</a>
+                            </li>
+                        }
+                        
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>&copy; 2024 - MotoXpress - Privacy</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

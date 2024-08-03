@@ -1,0 +1,51 @@
+﻿@model MotoXpress3.Models.Bike
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete bike</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Bike</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BikeName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BikeName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BikeType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BikeType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PerDayRental)
+        </dt>
+        <dd class = "col-sm-10">
+            Rs. @Html.DisplayFor(model => model.PerDayRental)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Availability)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Availability)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BikeImage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BikeImage)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="BikeId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MotoXpress3.Models.Bike>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary mb-3">Create New</a>
+    </p>
+}
+
+<style>
+    .card-custom {
+        border: none;
+        background-color: transparent;
+        text-align: center;
+    }
+
+        .card-custom img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+    .card-footer-custom {
+        background-color: #fdd835;
+        color: black;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        position: relative;
+        bottom: 0;
+    }
+
+    .text-strike {
+        text-decoration: line-through;
+        color: grey;
+        margin-right: 5px;
+    }
+</style>
+<video autoplay muted loop class="background-video">
+    <source src="~/lib/Uploads/background.mp4" type="video/mp4"> <!-- Add your video path here -->
+    Your browser does not support the video tag.
+</video>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card card-custom shadow">
+                <img src="@Html.DisplayFor(modelItem => item.BikeImage)" class="card-img-top" alt="Bike Image">
+                <div class="card-footer card-footer-custom">
+                    <div>@Html.DisplayFor(modelItem => item.BikeName)</div>
+                    <div>
+                        ₹ @Html.DisplayFor(modelItem => item.PerDayRental)/day
+                    </div>
+                </div>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="card-footer">
+                        <div class="mt-2">
+                            <a asp-action="Edit" asp-route-id="@item.BikeId" class="btn btn-warning btn-sm">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.BikeId" class="btn btn-info btn-sm">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.BikeId" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

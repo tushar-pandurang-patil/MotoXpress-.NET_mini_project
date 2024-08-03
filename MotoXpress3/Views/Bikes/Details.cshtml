@@ -1,0 +1,48 @@
+﻿@model MotoXpress3.Models.Bike
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Bike Details</h1>
+
+<div>
+    <h4>Bike</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BikeName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BikeName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BikeType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BikeType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PerDayRental)
+        </dt>
+        <dd class = "col-sm-10">
+            Rs. @Html.DisplayFor(model => model.PerDayRental)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Availability)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Availability)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BikeImage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BikeImage)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.BikeId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
